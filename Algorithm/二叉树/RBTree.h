@@ -1,13 +1,20 @@
 //
-//  RBNode.h
+//  RBTree.h
 //  Algorithm
 //
-//  Created by archerLj on 2019/8/25.
+//  Created by ArcherLj on 2019/8/26.
 //  Copyright © 2019 com.tech.zhonghua. All rights reserved.
 //
 
-// https://blog.csdn.net/eson_15/article/details/51144079
 #import <Foundation/Foundation.h>
+
+/**
+ 参考链接:
+ 
+ https://blog.csdn.net/eson_15/article/details/51144079
+ https://my.oschina.net/u/3272058/blog/1914452
+
+*/
 
 /**
  
@@ -37,13 +44,13 @@
  变色很容易理解，如果新插入的红色节点违背了规则（3），那么就要通过改变父节点的颜色来修正
  7.1.2 左旋和右旋
  左旋和右旋也很好理解，如果树向右倾斜，也就是右子树比较深，就需要左旋：如下:
-          A                                A
-        /   \                             / \
-       B     C      B节点左旋             E    C
-      / \           -------->          /  \
-     D   E                            B    G
-    / \              E节点右旋         / \
-   F   G            <--------        D   F
+ A                                A
+ /   \                             / \
+ B     C      B节点左旋             E    C
+ / \           -------->          /  \
+ D   E                            B    G
+ / \              E节点右旋         / \
+ F   G            <--------        D   F
  
  这里在B节点左旋，将B的右子树的根节点E旋转到B的位置，将B作为E的左子树，同时，将E原来的左子树改成B的右子树
  右旋正好是相反的
@@ -55,6 +62,10 @@ typedef NS_ENUM(NSUInteger, RBColor) {
     RBBlack
 };
 
+
+/******************************************************************/
+#pragma mark - 红黑树节点
+/******************************************************************/
 @interface RBNode : NSObject
 
 @property (nonatomic, assign) RBColor color; // 颜色
@@ -68,21 +79,29 @@ typedef NS_ENUM(NSUInteger, RBColor) {
                         left:(RBNode *)left
                        right:(RBNode *)right
                       parent:(RBNode *)parent;
+
+-(BOOL)hasNoChild; // 该节点没有孩子
+-(BOOL)hasOneChild; // 该节点只有一个孩子
+-(BOOL)hasTwoChild; // 该节点有两个孩子
+
 @end
 
 
-
 /******************************************************************/
-#pragma mark - 红-黑树操作
+#pragma mark - 红黑树
 /******************************************************************/
 @interface RBTree : NSObject
 
 // 向红-黑树中插入项目
 -(void)insert:(NSInteger)value;
 
+// 删除红-黑树中的项目
+-(void)remove:(NSInteger)value;
+
 // 将node节点左旋
 -(void)leftRotateNode:(RBNode *)node;
 
 // 将node节点右旋
 -(void)rightRotateNode:(RBNode *)node;
+
 @end

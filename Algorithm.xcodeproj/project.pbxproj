@@ -11,12 +11,11 @@
 		4130D63B2308EB0B00F8F597 /* MyPow.m in Sources */ = {isa = PBXBuildFile; fileRef = 4130D63A2308EB0B00F8F597 /* MyPow.m */; };
 		4130D63F230910B000F8F597 /* TwoSum.m in Sources */ = {isa = PBXBuildFile; fileRef = 4130D63E230910B000F8F597 /* TwoSum.m */; };
 		4130D6432309194700F8F597 /* Greedy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4130D6422309194700F8F597 /* Greedy.m */; };
-		4130D64723092A2D00F8F597 /* TreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4130D64623092A2D00F8F597 /* TreeNode.m */; };
 		4130D64B23092E6F00F8F597 /* InsertSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 4130D64A23092E6F00F8F597 /* InsertSort.m */; };
 		4130D64F2309348C00F8F597 /* BinaryInsertSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 4130D64E2309348C00F8F597 /* BinaryInsertSort.m */; };
-		4188573223120F0900732AF9 /* TreeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4188573123120F0900732AF9 /* TreeManager.m */; };
+		415CC7042313B8CF006C678A /* RBTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 415CC7032313B8CF006C678A /* RBTree.m */; };
+		415CC7072313B9BF006C678A /* SearchBTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 415CC7062313B9BF006C678A /* SearchBTree.m */; };
 		418857362312335200732AF9 /* UIView+CommonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 418857352312335200732AF9 /* UIView+CommonView.m */; };
-		418857392312676200732AF9 /* RBNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 418857382312676200732AF9 /* RBNode.m */; };
 		418AEACE2308D443007452E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 418AEACD2308D443007452E2 /* AppDelegate.m */; };
 		418AEAD12308D443007452E2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 418AEAD02308D443007452E2 /* ViewController.m */; };
 		418AEAD42308D443007452E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 418AEAD22308D443007452E2 /* Main.storyboard */; };
@@ -36,18 +35,16 @@
 		4130D63E230910B000F8F597 /* TwoSum.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwoSum.m; sourceTree = "<group>"; };
 		4130D6412309194700F8F597 /* Greedy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Greedy.h; sourceTree = "<group>"; };
 		4130D6422309194700F8F597 /* Greedy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Greedy.m; sourceTree = "<group>"; };
-		4130D64523092A2D00F8F597 /* TreeNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TreeNode.h; sourceTree = "<group>"; };
-		4130D64623092A2D00F8F597 /* TreeNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TreeNode.m; sourceTree = "<group>"; };
 		4130D64923092E6F00F8F597 /* InsertSort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InsertSort.h; sourceTree = "<group>"; };
 		4130D64A23092E6F00F8F597 /* InsertSort.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InsertSort.m; sourceTree = "<group>"; };
 		4130D64D2309348C00F8F597 /* BinaryInsertSort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BinaryInsertSort.h; sourceTree = "<group>"; };
 		4130D64E2309348C00F8F597 /* BinaryInsertSort.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BinaryInsertSort.m; sourceTree = "<group>"; };
-		4188573023120F0900732AF9 /* TreeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TreeManager.h; sourceTree = "<group>"; };
-		4188573123120F0900732AF9 /* TreeManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TreeManager.m; sourceTree = "<group>"; };
+		415CC7022313B8CF006C678A /* RBTree.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RBTree.h; sourceTree = "<group>"; };
+		415CC7032313B8CF006C678A /* RBTree.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RBTree.m; sourceTree = "<group>"; };
+		415CC7052313B9BF006C678A /* SearchBTree.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchBTree.h; sourceTree = "<group>"; };
+		415CC7062313B9BF006C678A /* SearchBTree.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchBTree.m; sourceTree = "<group>"; };
 		418857342312335200732AF9 /* UIView+CommonView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+CommonView.h"; sourceTree = "<group>"; };
 		418857352312335200732AF9 /* UIView+CommonView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+CommonView.m"; sourceTree = "<group>"; };
-		418857372312676200732AF9 /* RBNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RBNode.h; sourceTree = "<group>"; };
-		418857382312676200732AF9 /* RBNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RBNode.m; sourceTree = "<group>"; };
 		418AEAC92308D443007452E2 /* Algorithm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Algorithm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		418AEACC2308D443007452E2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		418AEACD2308D443007452E2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -114,12 +111,10 @@
 		4130D64423092A2100F8F597 /* 二叉树 */ = {
 			isa = PBXGroup;
 			children = (
-				4130D64523092A2D00F8F597 /* TreeNode.h */,
-				4130D64623092A2D00F8F597 /* TreeNode.m */,
-				4188573023120F0900732AF9 /* TreeManager.h */,
-				4188573123120F0900732AF9 /* TreeManager.m */,
-				418857372312676200732AF9 /* RBNode.h */,
-				418857382312676200732AF9 /* RBNode.m */,
+				415CC7022313B8CF006C678A /* RBTree.h */,
+				415CC7032313B8CF006C678A /* RBTree.m */,
+				415CC7052313B9BF006C678A /* SearchBTree.h */,
+				415CC7062313B9BF006C678A /* SearchBTree.m */,
 			);
 			path = "二叉树";
 			sourceTree = "<group>";
@@ -281,16 +276,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				415CC7072313B9BF006C678A /* SearchBTree.m in Sources */,
 				418857362312335200732AF9 /* UIView+CommonView.m in Sources */,
 				418AEAD12308D443007452E2 /* ViewController.m in Sources */,
 				418AEAE92308D9DC007452E2 /* BubbleSort.m in Sources */,
-				4188573223120F0900732AF9 /* TreeManager.m in Sources */,
-				418857392312676200732AF9 /* RBNode.m in Sources */,
 				4130D63F230910B000F8F597 /* TwoSum.m in Sources */,
 				4130D64F2309348C00F8F597 /* BinaryInsertSort.m in Sources */,
+				415CC7042313B8CF006C678A /* RBTree.m in Sources */,
 				418AEADC2308D444007452E2 /* main.m in Sources */,
 				4130D6342308E16200F8F597 /* MajorityElement.m in Sources */,
-				4130D64723092A2D00F8F597 /* TreeNode.m in Sources */,
 				4130D6432309194700F8F597 /* Greedy.m in Sources */,
 				418AEACE2308D443007452E2 /* AppDelegate.m in Sources */,
 				4130D64B23092E6F00F8F597 /* InsertSort.m in Sources */,

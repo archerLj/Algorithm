@@ -16,7 +16,6 @@
 #import "UIView+CommonView.h"
 #import "InsertSort.h"
 #import "BinaryInsertSort.h"
-#import "TreeManager.h"
 
 @interface ViewController ()
 @property (nonatomic, strong) NSMutableArray *unSortedArr;
@@ -63,35 +62,6 @@
 }
 
 
-/******************************************************************/
-#pragma mark - 二叉树
-/******************************************************************/
--(void)tree {
-    /**
-     1
-     \
-     3
-     /  \
-     2    10
-     /  \
-     8   300
-     /
-     20
-     
-     // 前： 1 3 2 10 8 300 20
-     // 中： 1 2 3 8 10 20 300
-     // 后:  2 8 20 300 10 3 1
-     */
-    
-    TreeNode *rootNode = [TreeManager createTreeWithArr:@[@(1), @(3), @(2), @(10), @(8), @(300), @(20)]];
-    
-    [TreeManager addValue:7 toTreeWithRootNode:rootNode];
-    NSLog(@"");
-    
-    //    NSMutableArray *result = [NSMutableArray array];
-    //    [TreeManager afterOrderSortWithRootNode:rootNode withResultArr:result];
-    //    NSLog(@"%@", result);
-}
 
 
 
