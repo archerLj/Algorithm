@@ -58,7 +58,7 @@
  */
 
 typedef NS_ENUM(NSUInteger, RBColor) {
-    RBRed = 0,
+    RBRed = 100,
     RBBlack
 };
 
@@ -83,6 +83,38 @@ typedef NS_ENUM(NSUInteger, RBColor) {
 -(BOOL)hasNoChild; // 该节点没有孩子
 -(BOOL)hasOneChild; // 该节点只有一个孩子
 -(BOOL)hasTwoChild; // 该节点有两个孩子
+-(BOOL)hasTwoBlackChild; // 有两个黑孩子
+
+-(BOOL)isLeftNode; // 该节点是否是父节点的左孩子
+-(BOOL)isRightNode; // 该节点是否是父节点的右孩子
+
+/**
+ 远侄子节点 && 近侄子节点
+ 
+ 如下图一，[C]的远侄子节点是[D]，[C]的近侄子节点是[E]
+ 如下图二，[B]的远侄子节点是[E], [B]的远侄子节点是[D]
+ 
+                A                     A
+               / \                   / \
+              B   C                 B   C
+             / \                       / \
+            D   E                     D   E
+ 
+              图一                     图二
+ */
+-(RBNode *)nf; // 获取远侄子节点
+-(RBNode *)nn; // 获取近侄子节点
+-(RBNode *)brother; // 获取兄弟节点
+-(RBNode *)uncle; // 获取叔叔节点
+
+-(BOOL)isBlack;   // 该节点是否是黑色
+-(BOOL)isRed;     // 该节点是否是红色
+-(BOOL)nfIsBlack; // 远侄子节点是否是黑色
+-(BOOL)nfIsRed;   // 远侄子节点是否是红色
+-(BOOL)nnIsBlack; // 近侄子节点是否是黑色
+-(BOOL)nnIsRed;   // 近侄子节点是否是红色
+
+-(void)changeColorWithNode:(RBNode *)node; // 和node节点交换颜色
 
 @end
 
@@ -91,6 +123,8 @@ typedef NS_ENUM(NSUInteger, RBColor) {
 #pragma mark - 红黑树
 /******************************************************************/
 @interface RBTree : NSObject
+
+-(instancetype)initWithArr:(NSArray *)arr;
 
 // 向红-黑树中插入项目
 -(void)insert:(NSInteger)value;

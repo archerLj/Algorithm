@@ -44,8 +44,125 @@
     return self.left != nil && self.right != nil;
 }
 
+-(BOOL)hasTwoBlackChild {
+    return (self.left == nil || self.left.color == RBBlack) && (self.right == nil || self.right.color == RBBlack);
+}
+
 -(NSString *)description {
     return [NSString stringWithFormat:@"%ld: %@", self.key, self.color == RBRed ? @"read" : @"black"];
+}
+
+-(RBNode *)nf {
+    if (self.parent) {
+        if (self == self.parent.left) {
+            if (self.parent.right) {
+                return self.parent.right.right;
+            }
+        } else {
+            if (self.parent.left) {
+                return self.parent.left.left;
+            }
+        }
+    }
+    return nil;
+}
+
+-(RBNode *)nn {
+    if (self.parent) {
+        if (self == self.parent.left) {
+            if (self.parent.right) {
+                return self.parent.right.left;
+            }
+        } else {
+            if (self.parent.left) {
+                return self.parent.left.right;
+            }
+        }
+    }
+    return nil;
+}
+
+-(RBNode *)brother {
+    if (self.parent) {
+        if (self == self.parent.left) {
+            return self.parent.right;
+        } else {
+            return self.parent.left;
+        }
+    }
+    
+    return nil;
+}
+
+-(RBNode *)uncle {
+    if (self.parent) {
+        if (self.parent.parent) {
+            if (self.parent == self.parent.parent.left) {
+                return self.parent.parent.right;
+            } else {
+                return self.parent.parent.left;
+            }
+        }
+    }
+    return nil;
+}
+
+-(BOOL)isLeftNode {
+    if (self.parent) {
+        return self == self.parent.left;
+    }
+    return NO;
+}
+
+-(BOOL)isRightNode {
+    if (self.parent) {
+        return self == self.parent.right;
+    }
+    return NO;
+}
+
+-(BOOL)isBlack {
+    return self.color == RBBlack;
+}
+
+-(BOOL)isRed {
+    return self.color == RBRed;
+}
+
+-(BOOL)nfIsBlack {
+    if ([self nf]) {
+        return [[self nf] color] == RBBlack;
+    }
+    return YES; // 这里空节点也被认为是黑色节点
+}
+
+-(BOOL)nfIsRed {
+    if ([self nf]) {
+        return [[self nf] color] == RBRed;
+    }
+    return NO;
+}
+
+-(BOOL)nnIsRed {
+    if ([self nn]) {
+        return [[self nn] color] == RBRed;
+    }
+    return NO;
+}
+
+-(BOOL)nnIsBlack {
+    if ([self nn]) {
+        return [[self nn] color] == RBBlack;
+    }
+    return YES; // 这里空节点也被认为是黑色节点
+}
+
+-(void)changeColorWithNode:(RBNode *)node {
+    if (node) {
+        RBColor temp = self.color;
+        self.color = node.color;
+        node.color = temp;
+    }
 }
 
 @end
@@ -62,20 +179,34 @@
 
 @implementation RBTree
 
+-(instancetype)initWithArr:(NSArray *)arr {
+    self = [super init];
+    if (self) {
+        for (NSNumber *value in arr) {
+            [self insert:[value integerValue]];
+        }
+    }
+    return self;
+}
+
 
 /******************************************************************/
 #pragma mark - 插入
 /******************************************************************/
 // 由于红-黑树是二叉搜索树的改进模型，所以，插入的前半段是一样的
 -(void)insert:(NSInteger)value {
+    
+    // 新插入的节点开始颜色一定是红色的，这样修正的代价比较小
     RBNode *node = [[RBNode alloc] initWithColor:RBRed key:value left:nil right:nil parent:nil];
     [self insertNode:node];
 }
 
 -(void)insertNode:(RBNode *)node {
     
+    // 😊情况1: 第一次插入，直接设为根节点，改成黑色即可
     if (self.rootNode == nil) {
         self.rootNode = node;
+        self.rootNode.color = RBBlack;
         return;
     }
     
@@ -107,90 +238,68 @@
     [self insertFixUp:node];
 }
 
-/**
- 二叉树修正
- 
- 如果是第一次插入，由于原树为空，所以只会违背原则（2），只要变成黑色就行了；如果插入节点的父节点是黑色的，那就
- 不会违背红-黑树的原则，就什么都不用做。但是，遇到下面三种情况时，我们就要开始变色和旋转了：
- 
- 1. 插入节点的父节点和叔叔节点（和父节点平级的另一个节点）均为红色
- 2. 插入节点的父节点是红色，叔叔节点是黑色，且插入节点是父节点的右子节点
- 3. 插入节点的父节点是红色，叔叔节点是黑色，且插入节点是父节点的左子节点
- 
- */
--(void)insertFixUp:(RBNode *)node {
+
+// 二叉树插入修正
+-(void)insertFixUp:(RBNode *)current {
+    
     RBNode *parent; // 父节点
     RBNode *gParent; // 祖父节点
+    RBNode *uncle; // 叔叔节点
     
-    // 需要修正的条件：父节点存在，且父节点的颜色是红色
-    while ((parent = node.parent) != nil && parent.color == RBRed) {
+    // 😊情况2: 父节点是黑色，则不用修正，已然是一颗红黑树
+    // 只有父节点是红色的时候才需要修正，如果父节点是黑色，则仍然是标准的红黑树，不需要再修正
+    while ((parent = current.parent) != nil && parent.color == RBRed) {
         
         gParent = parent.parent; // 获取祖父节点
+        uncle = [current uncle];
         
-        // 父节点是祖父节点的左子节点
-        if (parent == gParent.left) {
-            RBNode *uncle = gParent.right; // 获取叔叔节点
-            
-            // 情况1: 叔叔节点也是红色
-            if (uncle != nil && uncle.color == RBRed) {
-                // 把父节点和叔叔节点变成黑色节点
-                parent.color = RBBlack;
-                uncle.color = RBBlack;
-                // 把祖父节点变成红色节点
-                gParent.color = RBRed;
-                // 将祖父节点变成当前节点，然后继续while下次循环
-                node = gParent;
-                continue;
-            }
-            
-            // 情况2：叔叔节点是黑色，且当前节点是右子节点
-            if (node == parent.right) {
-                // 以父节点为支点左旋
-                [self leftRotateNode:parent];
-                // 将父节点和自己调换
-                //                RBNode *tmp = parent;
-                //                parent = node;
-                //                node = tmp;
-                
-                // 将父节点设为当前节点，并继续下次循环
-                node = parent;
-                continue;
-            }
-            
-            // 情况3: 叔叔节点是黑色，且当前节点是左子节点
+        // 😊情况3: 叔叔节点是红色
+        // 1. 将父节点和叔叔节点变黑 2.将祖父节点变红 3.将祖父节点设为当前节点，然后对当前节点进行修正
+        if ([uncle color] == RBRed) {
             parent.color = RBBlack;
+            uncle.color = RBBlack;
             gParent.color = RBRed;
-            [self rightRotateNode:gParent];
+            current = gParent;
+            continue;
             
-            // 父节点是祖父节点的右子节点
+            // 😊情况4: 叔叔节点是黑色，又分下面几种情况
         } else {
-            RBNode *uncle = gParent.left; // 获取叔叔节点
             
-            // 情况1: 叔叔节点也是红色
-            if (uncle != nil && uncle.color == RBRed) {
-                // 把父节点和叔叔节点变黑
-                parent.color = RBBlack;
-                uncle.color = RBBlack;
-                // 把祖父节点变红
-                gParent.color = RBRed;
-                // 把祖父节点设为当前节点，然后重新开始处理
-                node = gParent;
+            // 😊情况4.1: 当前节点是父节点的左孩子，父节点是祖父节点的左孩子
+            // 1.将祖父节点右旋 2.交换父节点和祖父节点的颜色
+            if ([current isLeftNode] && [parent isLeftNode]) {
+                [self rightRotateNode:gParent];
+                RBColor temp = parent.color;
+                parent.color = gParent.color;
+                gParent.color = temp;
+                break;
+                
+                // 😊情况4.2: 当前节点是父节点的右孩子，父节点是祖父节点的左孩子
+                // 1.将父节点左旋 2.将父节点设为当前节点继续修正
+            } else if ([current isRightNode] && [parent isLeftNode]) {
+                [self leftRotateNode:parent];
+                current = parent;
                 continue;
-            }
-            
-            // 情况2: 叔叔节点是黑色，且当前节点是左子节点
-            if (node == parent.left) {
-                // 以父节点为支点右旋
+                
+                // 😊情况4.3: 当前节点是父节点的右孩子，父节点是祖父节点的右孩子
+                // 1.将祖父节点左旋 2.交换父节点和祖父节点的颜色
+            } else if([current isRightNode] && [parent isRightNode]) {
+                [self leftRotateNode:gParent];
+                RBColor temp = parent.color;
+                parent.color = gParent.color;
+                gParent.color = temp;
+                break;
+                
+                // 😊情况4.4: 当前节点是父节点的左孩子，父节点是祖父节点的右孩子
+                // 1.将父节点右旋 2.将父节点设为当前节点继续修正
+            } else if ([current isLeftNode] && [parent isRightNode]) {
                 [self rightRotateNode:parent];
-                // 将父节点设为当前节点，继续下次循环
-                node = parent;
+                current = parent;
                 continue;
+                
+            } else {
+                break;
             }
-            
-            // 情况3：叔叔节点是黑色的，并且当前节点是右子节点
-            parent.color = RBBlack;
-            gParent.color = RBRed;
-            [self leftRotateNode:gParent];
         }
     }
     
@@ -208,18 +317,17 @@
     }
 }
 
-/**
- 删除的逻辑是通过交换，将要删除的节点中的值交换到叶子节点，然后只需要删除叶子节点，并做旋转变色即可.
- */
+// 删除的逻辑是通过交换，将要删除的节点中的值交换到叶子节点，然后只需要删除叶子节点，并做旋转变色即可.
 -(void)removeNode:(RBNode *)node {
     
     // 😊情况1: node没有孩子，是叶子节点
     if (node.left == nil && node.right == nil) {
         if (node.color == RBRed) { // 1.1 如果node是红色，则直接删除即可
-            node = nil;
+            [self releaseNode:node];
             
-        } else {  // 1.2 如果node是黑色，则删除它会破坏平衡，需要进行旋转变色
+        } else {  // 1.2 如果node是黑色，则删除它会破坏平衡，需要进行旋转变色，然后删除节点
             [self rotateAndChangeColorWithNode:node];
+            [self releaseNode:node];
         }
         
         // 😊情况2: 如果node只有一个孩子C，根据红黑树原则，node一定不是红色，因为红色要么没有孩子，要么有两个黑孩子.
@@ -254,36 +362,79 @@
     }
 }
 
-// TODO: 旋转变色
--(void)rotateAndChangeColorWithNode:(RBNode *)node {
-    
-}
+/**
+ 旋转变色
+ 
+ 下面是和currentNode相关的一些节点的简称：
+ P: currentNode的父节点
+ W: currentNode的兄弟节点
+ Nf: currentNode的远侄子
+ Nn: currentNode的近侄子
+*/
 
-// 查找后继节点中的最小节点，即右子树中最左的节点
--(RBNode *)searchPostMinNodeInRootNode:(RBNode *)node {
+-(void)rotateAndChangeColorWithNode:(RBNode *)currentNode {
     
-    RBNode *leftMiniNode = node.right;
-    while (leftMiniNode.left != nil) {
-        leftMiniNode = leftMiniNode.left;
+    // 😊情况1: currentNode是根，或者currentNode是红色，则直接将其变成黑色即可
+    if (currentNode == self.rootNode || currentNode.color == RBRed) {
+        currentNode.color = RBBlack;
+        return;
     }
-    return leftMiniNode;
-}
-
-
-// 查找键值为value的节点
--(RBNode *)searchNodeWithValue:(NSInteger)value inRootNode:(RBNode *)node {
-    while (node != nil) {
-        if (value < node.key) {
-            node = node.left;
-        } else if (value > node.key) {
-            node = node.right;
+    
+    // 这里，如果currentNode时黑色，则它一定有一个兄弟节点，不然就违背了红黑树每条通路上黑子数量相同的特质
+    RBNode *w = [currentNode brother];
+    RBNode *p = currentNode.parent;
+    
+    // 😊情况2: W是红色
+    // 则将W设为黑色，P设为红色，对P进行旋转(currentNode是P的左节点时，左旋，currentNode是P的右节点时右旋);
+    if (w.color == RBRed) {
+        
+        w.color = RBBlack;
+        p.color = RBRed;
+        
+        if ([currentNode isLeftNode]) {
+            [self leftRotateNode:p]; // 以P为支点进行左旋
         } else {
-            return node;
+            [self rightRotateNode:p];// 以P为支点进行右旋
+        }
+        
+        [self rotateAndChangeColorWithNode:currentNode];
+        
+    } else {
+        // 😊情况3: W是黑色，且W的两个孩子都是黑色
+        // 则将w设为红色，将P设为当前节点，继续进行旋转变色
+        if ([w hasTwoBlackChild]) {
+            w.color = RBRed;
+            [self rotateAndChangeColorWithNode:p];
+            
+            // 😊情况4: W是黑色，Nf是红色
+            // 则将W设为P的颜色，P和Nf设为黑色，并对P进行旋转(currentNode是P的左孩子就左旋，是右孩子就右旋)
+        } else if ([currentNode nfIsRed]) {
+            
+            w.color = p.color;
+            [currentNode nf].color = RBBlack;
+            p.color = RBBlack;
+            
+            if ([currentNode isLeftNode]) {
+                [self leftRotateNode:p]; // 以P为支点进行左旋
+            } else {
+                [self rightRotateNode:p];// 以P为支点进行右旋
+            }
+         
+            // 😊情况5: W是黑色，Nf是黑色
+            // 则交换W和Nn的颜色，并对W进行旋转(currentNode是P的左孩子则右旋，是右孩子则左旋)，旋转之后，继续旋转变色
+        } else  {
+            
+            [w changeColorWithNode:[currentNode nn]];
+            if ([currentNode isLeftNode]) {
+                [self rightRotateNode:w]; // 以W为支点进行右旋
+            } else {
+                [self leftRotateNode:w];// 以W为支点进行左旋
+            }
+            
+            [self rotateAndChangeColorWithNode:currentNode];
         }
     }
-    return nil;
 }
-
 
 
 /******************************************************************/
@@ -291,13 +442,13 @@
 /******************************************************************/
 /**
  对x节点进行左旋
- p                           p
- /                           /
- x                           y
- / \          左旋            / \
- lx  y       ------->        x   ry
- / \                     / \
- ly  ry                  lx  ly
+        p                           p
+       /                           /
+      x                           y
+     / \          左旋            / \
+    lx  y       ------->        x   ry
+       / \                     / \
+      ly  ry                  lx  ly
  
  左旋有三个步骤:
  1. [y]的左节点非空时，将[y]的左节点[ly]赋给[x]的右节点，并将[y]的左节点[ly]的父节点改为[x]
@@ -308,8 +459,9 @@
     
     // 1. 将y的左节点赋给x的右节点
     RBNode *rightNode = node.right; // 这里rightNode即是y节点, node即是x节点
+    
+    node.right = rightNode.left;
     if (rightNode.left) {
-        node.right = rightNode.left;
         rightNode.left.parent = node;
     }
     
@@ -325,6 +477,7 @@
         
         // x节点本来是树的根节点，现在y节点变成根节点了
         self.rootNode = rightNode;
+        self.rootNode.parent = nil;
     }
     
     // 3. 将y的左节点设为x，更新x的父节点为y
@@ -335,13 +488,13 @@
 /**
  对y节点进行右旋
  
- p                         p
- /                         /
- y                         x
- / \        右旋            / \
- x  ry     -------->       lx  y
- / \                           / \
- lx  rx                        rx  ry
+            p                         p
+           /                         /
+          y                         x
+         / \        右旋            / \
+        x  ry     -------->       lx  y
+       / \                           / \
+     lx  rx                        rx  ry
  
  右旋也有三个步骤:
  1. 如果[x]的右节点非空，则将[x]的右节点赋给[y]的左节点，并将[y]设为[x]右节点的父亲
@@ -352,8 +505,8 @@
     
     // 1. 将x的右节点赋给y
     RBNode *leftNode = node.left; // 这里leftNode即是x节点, node即是y节点
+    node.left = leftNode.right;
     if (leftNode.right) {
-        node.left = leftNode.right;
         leftNode.right.parent = node;
     }
     
@@ -368,11 +521,56 @@
     } else {
         // y本来就是树的根节点，现在x变成根节点了
         self.rootNode = leftNode;
+        self.rootNode.parent = nil;
     }
     
     // 3. 将y的父节点改成x，将x的右节点变成y
     node.parent = leftNode;
     leftNode.right = node;
+}
+
+
+/******************************************************************/
+#pragma mark - 工具方法
+/******************************************************************/
+// 查找键值为value的节点
+-(RBNode *)searchNodeWithValue:(NSInteger)value inRootNode:(RBNode *)node {
+    while (node != nil) {
+        if (value < node.key) {
+            node = node.left;
+        } else if (value > node.key) {
+            node = node.right;
+        } else {
+            return node;
+        }
+    }
+    return nil;
+}
+
+// 查找后继节点中的最小节点，即右子树中最左的节点
+-(RBNode *)searchPostMinNodeInRootNode:(RBNode *)node {
+    
+    RBNode *leftMiniNode = node.right;
+    while (leftMiniNode.left != nil) {
+        leftMiniNode = leftMiniNode.left;
+    }
+    return leftMiniNode;
+}
+
+// 释放节点
+-(void)releaseNode:(RBNode *)node {
+    if (node.parent) {
+        if (node == node.parent.left) {
+            node.parent.left = nil;
+        } else {
+            node.parent.right = nil;
+        }
+    }
+    
+    if (node == self.rootNode) {
+        self.rootNode = nil;
+    }
+    node = nil;
 }
 
 @end

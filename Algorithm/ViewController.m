@@ -16,10 +16,12 @@
 #import "UIView+CommonView.h"
 #import "InsertSort.h"
 #import "BinaryInsertSort.h"
+#import "RBTree.h"
 
 @interface ViewController ()
 @property (nonatomic, strong) NSMutableArray *unSortedArr;
 @property (nonatomic, strong) NSMutableArray *majorityElementArr;
+@property (nonatomic, strong) RBTree *demoRBTree;
 @end
 
 @implementation ViewController
@@ -27,7 +29,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self dataInit];
+ 
+    NSArray *valueArr = @[@(12), @(1), @(9), @(2), @(0), @(11), @(7), @(19), @(4),
+                          @(15), @(18), @(5), @(14), @(13), @(10), @(16), @(6), @(3), @(8), @(17)];
+    self.demoRBTree = [[RBTree alloc] initWithArr:valueArr];
     
+    for (NSNumber *value in valueArr) {
+        if ([value integerValue] == 17) {
+            NSLog(@"");
+        }
+        [self.demoRBTree remove:[value integerValue]];
+        NSLog(@"");
+    }
 }
 
 /******************************************************************/
