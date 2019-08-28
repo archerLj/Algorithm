@@ -15,6 +15,7 @@
 		4130D64F2309348C00F8F597 /* BinaryInsertSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 4130D64E2309348C00F8F597 /* BinaryInsertSort.m */; };
 		415CC7042313B8CF006C678A /* RBTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 415CC7032313B8CF006C678A /* RBTree.m */; };
 		415CC7072313B9BF006C678A /* SearchBTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 415CC7062313B9BF006C678A /* SearchBTree.m */; };
+		415CC70B23168C51006C678A /* MergeSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 415CC70A23168C51006C678A /* MergeSort.m */; };
 		418857362312335200732AF9 /* UIView+CommonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 418857352312335200732AF9 /* UIView+CommonView.m */; };
 		418AEACE2308D443007452E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 418AEACD2308D443007452E2 /* AppDelegate.m */; };
 		418AEAD12308D443007452E2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 418AEAD02308D443007452E2 /* ViewController.m */; };
@@ -43,6 +44,8 @@
 		415CC7032313B8CF006C678A /* RBTree.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RBTree.m; sourceTree = "<group>"; };
 		415CC7052313B9BF006C678A /* SearchBTree.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchBTree.h; sourceTree = "<group>"; };
 		415CC7062313B9BF006C678A /* SearchBTree.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchBTree.m; sourceTree = "<group>"; };
+		415CC70923168C51006C678A /* MergeSort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MergeSort.h; sourceTree = "<group>"; };
+		415CC70A23168C51006C678A /* MergeSort.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MergeSort.m; sourceTree = "<group>"; };
 		418857342312335200732AF9 /* UIView+CommonView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+CommonView.h"; sourceTree = "<group>"; };
 		418857352312335200732AF9 /* UIView+CommonView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+CommonView.m"; sourceTree = "<group>"; };
 		418AEAC92308D443007452E2 /* Algorithm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Algorithm.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,6 +140,15 @@
 			path = "二分插入排序";
 			sourceTree = "<group>";
 		};
+		415CC70823168C32006C678A /* 归并排序 */ = {
+			isa = PBXGroup;
+			children = (
+				415CC70923168C51006C678A /* MergeSort.h */,
+				415CC70A23168C51006C678A /* MergeSort.m */,
+			);
+			path = "归并排序";
+			sourceTree = "<group>";
+		};
 		418857332312333B00732AF9 /* categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +177,7 @@
 		418AEACB2308D443007452E2 /* Algorithm */ = {
 			isa = PBXGroup;
 			children = (
+				415CC70823168C32006C678A /* 归并排序 */,
 				418857332312333B00732AF9 /* categories */,
 				4130D64C2309347C00F8F597 /* 二分插入排序 */,
 				4130D64823092E6400F8F597 /* 插入排序 */,
@@ -276,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				415CC70B23168C51006C678A /* MergeSort.m in Sources */,
 				415CC7072313B9BF006C678A /* SearchBTree.m in Sources */,
 				418857362312335200732AF9 /* UIView+CommonView.m in Sources */,
 				418AEAD12308D443007452E2 /* ViewController.m in Sources */,
