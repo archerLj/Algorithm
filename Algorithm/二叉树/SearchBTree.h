@@ -155,18 +155,20 @@
  1. 前序遍历： 先遍历根元素，再遍历左子树，最后遍历右子树， 根-左-右
  2. 中序遍历： 先遍历左子树，再遍历根元素，最后遍历右子树， 左-根-右
  3. 后序遍历： 先遍历左子树，再遍历右子树，最后遍历根元素， 左-右-根
+ 4. 层序遍历： 按层遍历，遍历完一层之后再遍历下一层
  
  这三种遍历方式是根据遍历根元素的位置来划分的
  
  比如，有一颗这样的树:
- 2
- / \
- 1   3
- / \
- 4   5
+        2
+       / \
+      1   3
+         / \
+        4   5
  前序遍历结果是: 2 1 3 4 5
  中序遍历结果是: 1 2 4 3 5
  后序遍历结果是: 1 4 5 3 2
+ 层序遍历结果是: 2 1 3 4 5
  */
 // 1. 前序遍历
 -(void)preOrderSortWithResultArr:(NSMutableArray *)resultArr;
@@ -176,6 +178,9 @@
 
 // 3. 后序遍历
 -(void)postOrderSortWithResultArr:(NSMutableArray *)resultArr;
+
+// 4. 层序遍历
+-(void)levelOrderSortWithResultArr:(NSMutableArray *)resultArr;
 
 
 

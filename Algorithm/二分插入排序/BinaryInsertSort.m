@@ -11,7 +11,7 @@
 @implementation BinaryInsertSort
 
 +(void)sortWithArr:(NSMutableArray *)arr {
-    NSLog(@"排序前: %@", arr);
+//    NSLog(@"排序前: %@", arr);
     
     int i, j;
     for (i=1; i<arr.count; i++) {
@@ -44,7 +44,7 @@
         }
     }
     
-    NSLog(@"排序后: %@", arr);
+//    NSLog(@"排序后: %@", arr);
 }
 
 @end

@@ -16,6 +16,8 @@
 		415CC7042313B8CF006C678A /* RBTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 415CC7032313B8CF006C678A /* RBTree.m */; };
 		415CC7072313B9BF006C678A /* SearchBTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 415CC7062313B9BF006C678A /* SearchBTree.m */; };
 		415CC70B23168C51006C678A /* MergeSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 415CC70A23168C51006C678A /* MergeSort.m */; };
+		415CC70F2318F29A006C678A /* ShellSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 415CC70E2318F29A006C678A /* ShellSort.m */; };
+		415CC71623191BEC006C678A /* QuickSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 415CC71523191BEC006C678A /* QuickSort.m */; };
 		418857362312335200732AF9 /* UIView+CommonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 418857352312335200732AF9 /* UIView+CommonView.m */; };
 		418AEACE2308D443007452E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 418AEACD2308D443007452E2 /* AppDelegate.m */; };
 		418AEAD12308D443007452E2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 418AEAD02308D443007452E2 /* ViewController.m */; };
@@ -25,6 +27,10 @@
 		418AEADC2308D444007452E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 418AEADB2308D444007452E2 /* main.m */; };
 		418AEAE62308D52E007452E2 /* SelectSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 418AEAE52308D52E007452E2 /* SelectSort.m */; };
 		418AEAE92308D9DC007452E2 /* BubbleSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 418AEAE82308D9DC007452E2 /* BubbleSort.m */; };
+		419441BF2320F11D00220D68 /* First10From1000000.m in Sources */ = {isa = PBXBuildFile; fileRef = 419441BE2320F11C00220D68 /* First10From1000000.m */; };
+		41AAE9E42321E74300E20676 /* NSString+Reverse.m in Sources */ = {isa = PBXBuildFile; fileRef = 41AAE9E32321E74300E20676 /* NSString+Reverse.m */; };
+		41D60E7C231E5E9B00C4EB91 /* List.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D60E7B231E5E9B00C4EB91 /* List.m */; };
+		41D60E7F231F4EDB00C4EB91 /* MediaOfTwoArr.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D60E7E231F4EDB00C4EB91 /* MediaOfTwoArr.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +52,10 @@
 		415CC7062313B9BF006C678A /* SearchBTree.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchBTree.m; sourceTree = "<group>"; };
 		415CC70923168C51006C678A /* MergeSort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MergeSort.h; sourceTree = "<group>"; };
 		415CC70A23168C51006C678A /* MergeSort.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MergeSort.m; sourceTree = "<group>"; };
+		415CC70D2318F29A006C678A /* ShellSort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShellSort.h; sourceTree = "<group>"; };
+		415CC70E2318F29A006C678A /* ShellSort.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShellSort.m; sourceTree = "<group>"; };
+		415CC71423191BEC006C678A /* QuickSort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuickSort.h; sourceTree = "<group>"; };
+		415CC71523191BEC006C678A /* QuickSort.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuickSort.m; sourceTree = "<group>"; };
 		418857342312335200732AF9 /* UIView+CommonView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+CommonView.h"; sourceTree = "<group>"; };
 		418857352312335200732AF9 /* UIView+CommonView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+CommonView.m"; sourceTree = "<group>"; };
 		418AEAC92308D443007452E2 /* Algorithm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Algorithm.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,6 +72,14 @@
 		418AEAE52308D52E007452E2 /* SelectSort.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectSort.m; sourceTree = "<group>"; };
 		418AEAE72308D9DC007452E2 /* BubbleSort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BubbleSort.h; sourceTree = "<group>"; };
 		418AEAE82308D9DC007452E2 /* BubbleSort.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BubbleSort.m; sourceTree = "<group>"; };
+		419441BD2320F11C00220D68 /* First10From1000000.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = First10From1000000.h; sourceTree = "<group>"; };
+		419441BE2320F11C00220D68 /* First10From1000000.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = First10From1000000.m; sourceTree = "<group>"; };
+		41AAE9E22321E74300E20676 /* NSString+Reverse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Reverse.h"; sourceTree = "<group>"; };
+		41AAE9E32321E74300E20676 /* NSString+Reverse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Reverse.m"; sourceTree = "<group>"; };
+		41D60E7A231E5E9B00C4EB91 /* List.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = List.h; sourceTree = "<group>"; };
+		41D60E7B231E5E9B00C4EB91 /* List.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = List.m; sourceTree = "<group>"; };
+		41D60E7D231F4EDB00C4EB91 /* MediaOfTwoArr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MediaOfTwoArr.h; sourceTree = "<group>"; };
+		41D60E7E231F4EDB00C4EB91 /* MediaOfTwoArr.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MediaOfTwoArr.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +167,24 @@
 			path = "归并排序";
 			sourceTree = "<group>";
 		};
+		415CC70C2318F285006C678A /* 希尔排序 */ = {
+			isa = PBXGroup;
+			children = (
+				415CC70D2318F29A006C678A /* ShellSort.h */,
+				415CC70E2318F29A006C678A /* ShellSort.m */,
+			);
+			path = "希尔排序";
+			sourceTree = "<group>";
+		};
+		415CC71323191BE0006C678A /* 快速排序 */ = {
+			isa = PBXGroup;
+			children = (
+				415CC71423191BEC006C678A /* QuickSort.h */,
+				415CC71523191BEC006C678A /* QuickSort.m */,
+			);
+			path = "快速排序";
+			sourceTree = "<group>";
+		};
 		418857332312333B00732AF9 /* categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +213,13 @@
 		418AEACB2308D443007452E2 /* Algorithm */ = {
 			isa = PBXGroup;
 			children = (
+				41AAE9E12321E72000E20676 /* 字符串反转 */,
+				419441BC2320F0FF00220D68 /* 100万数据前10 */,
+				419441BB23209FAE00220D68 /* New Group */,
+				41D60E79231E5E8500C4EB91 /* 链表 */,
+				41D60E78231E09FA00C4EB91 /* 两个数组求中位数 */,
+				415CC71323191BE0006C678A /* 快速排序 */,
+				415CC70C2318F285006C678A /* 希尔排序 */,
 				415CC70823168C32006C678A /* 归并排序 */,
 				418857332312333B00732AF9 /* categories */,
 				4130D64C2309347C00F8F597 /* 二分插入排序 */,
@@ -217,6 +260,49 @@
 				418AEAE52308D52E007452E2 /* SelectSort.m */,
 			);
 			path = "选择排序";
+			sourceTree = "<group>";
+		};
+		419441BB23209FAE00220D68 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		419441BC2320F0FF00220D68 /* 100万数据前10 */ = {
+			isa = PBXGroup;
+			children = (
+				419441BD2320F11C00220D68 /* First10From1000000.h */,
+				419441BE2320F11C00220D68 /* First10From1000000.m */,
+			);
+			path = "100万数据前10";
+			sourceTree = "<group>";
+		};
+		41AAE9E12321E72000E20676 /* 字符串反转 */ = {
+			isa = PBXGroup;
+			children = (
+				41AAE9E22321E74300E20676 /* NSString+Reverse.h */,
+				41AAE9E32321E74300E20676 /* NSString+Reverse.m */,
+			);
+			path = "字符串反转";
+			sourceTree = "<group>";
+		};
+		41D60E78231E09FA00C4EB91 /* 两个数组求中位数 */ = {
+			isa = PBXGroup;
+			children = (
+				41D60E7D231F4EDB00C4EB91 /* MediaOfTwoArr.h */,
+				41D60E7E231F4EDB00C4EB91 /* MediaOfTwoArr.m */,
+			);
+			path = "两个数组求中位数";
+			sourceTree = "<group>";
+		};
+		41D60E79231E5E8500C4EB91 /* 链表 */ = {
+			isa = PBXGroup;
+			children = (
+				41D60E7A231E5E9B00C4EB91 /* List.h */,
+				41D60E7B231E5E9B00C4EB91 /* List.m */,
+			);
+			path = "链表";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,16 +376,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				415CC70B23168C51006C678A /* MergeSort.m in Sources */,
+				419441BF2320F11D00220D68 /* First10From1000000.m in Sources */,
 				415CC7072313B9BF006C678A /* SearchBTree.m in Sources */,
+				41D60E7F231F4EDB00C4EB91 /* MediaOfTwoArr.m in Sources */,
 				418857362312335200732AF9 /* UIView+CommonView.m in Sources */,
+				41D60E7C231E5E9B00C4EB91 /* List.m in Sources */,
 				418AEAD12308D443007452E2 /* ViewController.m in Sources */,
 				418AEAE92308D9DC007452E2 /* BubbleSort.m in Sources */,
+				415CC71623191BEC006C678A /* QuickSort.m in Sources */,
 				4130D63F230910B000F8F597 /* TwoSum.m in Sources */,
+				415CC70F2318F29A006C678A /* ShellSort.m in Sources */,
 				4130D64F2309348C00F8F597 /* BinaryInsertSort.m in Sources */,
 				415CC7042313B8CF006C678A /* RBTree.m in Sources */,
 				418AEADC2308D444007452E2 /* main.m in Sources */,
 				4130D6342308E16200F8F597 /* MajorityElement.m in Sources */,
 				4130D6432309194700F8F597 /* Greedy.m in Sources */,
+				41AAE9E42321E74300E20676 /* NSString+Reverse.m in Sources */,
 				418AEACE2308D443007452E2 /* AppDelegate.m in Sources */,
 				4130D64B23092E6F00F8F597 /* InsertSort.m in Sources */,
 				418AEAE62308D52E007452E2 /* SelectSort.m in Sources */,

@@ -118,6 +118,49 @@
     [resultArr addObject:@(node.value)];
 }
 
+-(void)levelOrderSortWithResultArr:(NSMutableArray *)resultArr {
+    
+    NSMutableArray *levelNodes = [NSMutableArray array]; // 用来暂存出队的节点
+    NSMutableArray *queue = [NSMutableArray array]; // 用来遍历节点用的队列
+    
+    
+    TreeNode *lastNodeInCurrentLevel = self.rootNode; // 当前层的最后一个节点
+    TreeNode *lastNodeInNextLevel; // 下一层的最后一个节点
+    
+    [queue addObject:self.rootNode]; // 头节点入队
+    
+    while (queue.count > 0) {
+        
+        // 1. 队列第一个元素出队，并加入到暂存数组
+        TreeNode *first = [queue objectAtIndex:0];
+        [queue removeObjectAtIndex:0];
+        [levelNodes addObject:first];
+        
+        // 2. 把当前出队节点的左右孩子入队，并更新lastNodeInNextLevel
+        if (first.leftLeaf != nil) {
+            [queue addObject:first.leftLeaf];
+            lastNodeInNextLevel = first.leftLeaf;
+        }
+        if (first.rightLeaf != nil) {
+            [queue addObject:first.rightLeaf];
+            lastNodeInNextLevel = first.rightLeaf;
+        }
+        
+        // 3. 如果出队的元素是它所在层的最后一个元素，则需要把暂存数组中的数据提交到结果中，并重新初始化来装下一层的数据
+        // 同时表示它所在层所有节点的孩子已经入队，下一层的最后一个节点也确定下来了
+        // 这时候把下一层就变成当前层，之前的lastNodeInNextLevel就变成新的当前层的最后节点了
+        if (first == lastNodeInCurrentLevel) {
+            
+            NSArray *resultOfThisLevel = [levelNodes copy];
+            [resultArr addObject:resultOfThisLevel];
+            [levelNodes removeAllObjects];
+            
+            lastNodeInCurrentLevel = lastNodeInNextLevel;
+            lastNodeInNextLevel = nil;
+        }
+    }
+}
+
 
 /******************************************************************/
 #pragma mark - 反转二叉树

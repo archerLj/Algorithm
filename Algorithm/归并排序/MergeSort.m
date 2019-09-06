@@ -10,6 +10,7 @@
 
 @implementation MergeSort
 
+// 归并排序
 +(void)sortWithArr:(NSMutableArray *)unSortedArr {
     if (unSortedArr == nil || unSortedArr.count < 2) {
         return;
@@ -37,6 +38,11 @@
 
 // 合并两个有序数组
 +(void)mergeWithArr:(NSMutableArray *)arr l:(NSInteger)l mid:(NSInteger)mid r:(NSInteger)r {
+    
+    // 如果左数组的最后一个元素小于等于右数组的第一个元素。说明元素组中[l, r]范围内的元素都是有序的。
+    if ([arr[mid] intValue] <= [arr[mid + 1] intValue]) {
+        return;
+    }
 
     NSMutableArray *help = [NSMutableArray array];
     NSInteger p1 = l;

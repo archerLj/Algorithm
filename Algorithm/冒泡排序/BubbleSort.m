@@ -11,7 +11,6 @@
 @implementation BubbleSort
 
 +(void)sortWithArr:(NSMutableArray *)unSortedArr {
-    NSLog(@"排序前: %@", unSortedArr);
     
     BOOL didSwap;
     for (NSInteger i=unSortedArr.count-1; i>0; i--) {
@@ -32,7 +31,6 @@
         }
     }
     
-    NSLog(@"排序后: %@", unSortedArr);
 }
 
 @end

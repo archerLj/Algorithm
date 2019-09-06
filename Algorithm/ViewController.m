@@ -18,6 +18,13 @@
 #import "BinaryInsertSort.h"
 #import "RBTree.h"
 #import "MergeSort.h"
+#import "ShellSort.h"
+#import "QuickSort.h"
+#import "SearchBTree.h"
+#import "List.h"
+#import "First10From1000000.h"
+#import "MediaOfTwoArr.h"
+#import "NSString+Reverse.h"
 
 @interface ViewController ()
 @property (nonatomic, strong) NSMutableArray *unSortedArr;
@@ -29,9 +36,28 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self dataInit];
+//    [self dataInit];
+//
+//    NSMutableArray *numberOf1000000 = [NSMutableArray array];
+//    for (NSInteger i=1; i<=100; i++) {
+//        NSInteger num = 1 + arc4random() % 100;
+//        [numberOf1000000 addObject:@(num)];
+//    }
     
-    [MergeSort sortWithArr:self.unSortedArr];
+//    NSLog(@"%f", [[NSDate date] timeIntervalSinceReferenceDate]);
+//    NSArray *result = [First10From1000000 frist10FromArr:[numberOf1000000 copy]];
+//    NSLog(@"%@", result);
+//    NSLog(@"%f", [[NSDate date] timeIntervalSinceReferenceDate]);
+    
+    
+//    NSLog(@"%f", [[NSDate date] timeIntervalSinceReferenceDate]);
+//    NSArray *result2 = [First10From1000000 first10FromArrUseHeapInArr:[numberOf1000000 copy]];
+//    NSLog(@"%@", result2);
+//    NSLog(@"%f", [[NSDate date] timeIntervalSinceReferenceDate]);
+    
+    NSString *normal = @"hello boy! welcome to iOS world!";
+    NSString *reversed = [normal reverse];
+    NSLog(@"%@", reversed);
 }
 
 
